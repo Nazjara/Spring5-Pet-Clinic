@@ -2,9 +2,11 @@ package com.nazjara.service.map;
 
 import com.nazjara.model.Vet;
 import com.nazjara.service.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override

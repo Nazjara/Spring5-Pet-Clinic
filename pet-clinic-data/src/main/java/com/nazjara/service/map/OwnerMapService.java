@@ -2,9 +2,11 @@ package com.nazjara.service.map;
 
 import com.nazjara.model.Owner;
 import com.nazjara.service.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
