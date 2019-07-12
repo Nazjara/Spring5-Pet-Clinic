@@ -1,13 +1,23 @@
 package com.nazjara.service.map;
 
+import com.nazjara.model.Speciality;
 import com.nazjara.model.Vet;
+import com.nazjara.service.SpecialityService;
 import com.nazjara.service.VetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
+
+    private SpecialityService specialityService;
+
+    @Autowired
+    public VetMapService(SpecialityService specialityService) {
+        this.specialityService = specialityService;
+    }
 
     @Override
     public Set<Vet> findAll() {
@@ -26,6 +36,13 @@ public class VetMapService extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(Vet vet) {
+        vet.getSpecialities().forEach(speciality -> {
+            if (speciality.getId() == null) {
+                Speciality savedSpeciality = specialityService.save(speciality);
+                speciality.setId(savedSpeciality.getId());
+            }
+        });
+
         return super.save(vet);
     }
 
