@@ -5,11 +5,13 @@ import com.nazjara.model.Vet;
 import com.nazjara.service.SpecialityService;
 import com.nazjara.service.VetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"map", "default"})
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     private SpecialityService specialityService;

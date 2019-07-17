@@ -2,11 +2,13 @@ package com.nazjara.service.map;
 
 import com.nazjara.model.Speciality;
 import com.nazjara.service.SpecialityService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"map", "default"})
 public class SpecialityMapService extends AbstractMapService<Speciality, Long> implements SpecialityService {
 
     @Override

@@ -6,11 +6,13 @@ import com.nazjara.service.OwnerService;
 import com.nazjara.service.PetService;
 import com.nazjara.service.PetTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"map", "default"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;

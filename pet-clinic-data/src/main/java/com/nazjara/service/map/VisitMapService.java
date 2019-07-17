@@ -2,11 +2,13 @@ package com.nazjara.service.map;
 
 import com.nazjara.model.Visit;
 import com.nazjara.service.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"map", "default"})
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
     @Override
