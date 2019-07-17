@@ -1,10 +1,7 @@
 package com.nazjara.bootstrap;
 
 import com.nazjara.model.*;
-import com.nazjara.service.OwnerService;
-import com.nazjara.service.PetTypeService;
-import com.nazjara.service.SpecialityService;
-import com.nazjara.service.VetService;
+import com.nazjara.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,13 +15,16 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -91,6 +91,15 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner2);
 
         System.out.println("Owners are loaded");
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(pet2);
+        catVisit.setDescription("Sneezy Kitty");
+        catVisit.setDate(LocalDate.now());
+
+        visitService.save(catVisit);
+
+        System.out.println("Visits are loaded");
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Vet's 1 firstname");
