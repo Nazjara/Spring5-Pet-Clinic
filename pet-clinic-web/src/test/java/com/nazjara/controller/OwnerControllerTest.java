@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -18,7 +19,6 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 @ExtendWith(MockitoExtension.class)
 class OwnerControllerTest {
 
@@ -27,6 +27,9 @@ class OwnerControllerTest {
 
     @Mock
     private OwnerService ownerService;
+
+    @Mock
+    private Owner owner;
 
     private Set<Owner> owners;
 
@@ -37,7 +40,8 @@ class OwnerControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(ownerController).build();
         owners = Set.of(Owner.builder().id(1L).build(), Owner.builder().id(2L).build());
 
-        when(ownerService.findAll()).thenReturn(owners);
+        Mockito.lenient().when(ownerService.findAll()).thenReturn(owners);
+        Mockito.lenient().when(ownerService.findById(1L)).thenReturn(owner);
     }
 
     @Test
@@ -48,5 +52,15 @@ class OwnerControllerTest {
                 .andExpect(model().attribute("owners", hasSize(2)));
 
         verify(ownerService).findAll();
+    }
+
+    @Test
+    void testDisplayOwner() throws Exception {
+        mockMvc.perform(get("/owners/1"))
+                .andExpect(status().is(200))
+                .andExpect(view().name("owners/ownerDetails"))
+                .andExpect(model().attribute("owner", owner));
+
+        verify(ownerService).findById(1L);
     }
 }
