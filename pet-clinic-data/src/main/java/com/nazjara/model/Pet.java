@@ -11,10 +11,19 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {
+
+    @Builder
+    public Pet(Long id, PetType petType, Owner owner, LocalDate birthDate, String name, Set<Visit> visits) {
+        super(id);
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birthDate;
+        this.name = name;
+        this.visits = visits == null ? new HashSet<>() : visits;
+    }
 
     @ManyToOne
     @JoinColumn(name = "type_id")

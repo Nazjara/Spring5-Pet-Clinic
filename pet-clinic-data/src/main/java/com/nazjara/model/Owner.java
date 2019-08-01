@@ -20,7 +20,7 @@ public class Owner extends Person {
         this.address = address;
         this.city = city;
         this.telephone = telephone;
-        this.pets = pets;
+        this.pets = pets == null ? new HashSet<>() : pets;
     }
 
     @Column(name = "address")
@@ -34,4 +34,8 @@ public class Owner extends Person {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
+
+    public Pet getPetByName(String name) {
+        return pets.stream().filter(pet -> pet.getName().equals(name)).findFirst().orElse(null);
+    }
 }
