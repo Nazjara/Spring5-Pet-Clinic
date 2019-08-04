@@ -1,6 +1,6 @@
 package com.nazjara.service.map;
 
-import com.nazjara.model.Speciality;
+import com.nazjara.model.Specialty;
 import com.nazjara.service.SpecialityService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import java.util.Set;
 
 @Service
 @Profile({"map", "default"})
-public class SpecialityMapService extends AbstractMapService<Speciality, Long> implements SpecialityService {
+public class SpecialityMapService extends AbstractMapService<Specialty, Long> implements SpecialityService {
 
     @Override
-    public Set<Speciality> findAll() {
+    public Set<Specialty> findAll() {
         return super.findAll();
     }
 
@@ -22,17 +22,17 @@ public class SpecialityMapService extends AbstractMapService<Speciality, Long> i
     }
 
     @Override
-    public void delete(Speciality speciality) {
-        super.delete(speciality);
+    public void delete(Specialty specialty) {
+        super.delete(specialty);
     }
 
     @Override
-    public Speciality save(Speciality speciality) {
-        return super.save(speciality);
+    public Specialty save(Specialty specialty) {
+        return super.save(specialty);
     }
 
     @Override
-    public Speciality findById(Long id) {
+    public Specialty findById(Long id) {
         return super.findById(id);
     }
 }

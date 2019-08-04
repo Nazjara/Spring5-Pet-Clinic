@@ -1,6 +1,6 @@
 package com.nazjara.service;
 
-import com.nazjara.model.Speciality;
+import com.nazjara.model.Specialty;
 
-public interface SpecialityService extends CrudService<Speciality, Long> {
+public interface SpecialityService extends CrudService<Specialty, Long> {
 }

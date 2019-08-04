@@ -1,6 +1,6 @@
 package com.nazjara.service.map;
 
-import com.nazjara.model.Speciality;
+import com.nazjara.model.Specialty;
 import com.nazjara.model.Vet;
 import com.nazjara.service.SpecialityService;
 import com.nazjara.service.VetService;
@@ -38,10 +38,10 @@ public class VetMapService extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(Vet vet) {
-        vet.getSpecialities().forEach(speciality -> {
+        vet.getSpecialties().forEach(speciality -> {
             if (speciality.getId() == null) {
-                Speciality savedSpeciality = specialityService.save(speciality);
-                speciality.setId(savedSpeciality.getId());
+                Specialty savedSpecialty = specialityService.save(speciality);
+                speciality.setId(savedSpecialty.getId());
             }
         });
 

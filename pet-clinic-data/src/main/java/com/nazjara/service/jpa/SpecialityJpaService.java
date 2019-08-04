@@ -1,6 +1,6 @@
 package com.nazjara.service.jpa;
 
-import com.nazjara.model.Speciality;
+import com.nazjara.model.Specialty;
 import com.nazjara.repository.SpecialityRepository;
 import com.nazjara.service.SpecialityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +22,25 @@ public class SpecialityJpaService implements SpecialityService {
     }
 
     @Override
-    public Set<Speciality> findAll() {
-        Set<Speciality> specialities = new HashSet<>();
+    public Set<Specialty> findAll() {
+        Set<Specialty> specialities = new HashSet<>();
         specialityRepository.findAll().forEach(specialities::add);
 
         return specialities;
     }
 
     @Override
-    public Speciality findById(Long aLong) {
+    public Specialty findById(Long aLong) {
         return specialityRepository.findById(aLong).orElse(null);
     }
 
     @Override
-    public Speciality save(Speciality object) {
+    public Specialty save(Specialty object) {
         return specialityRepository.save(object);
     }
 
     @Override
-    public void delete(Speciality object) {
+    public void delete(Specialty object) {
         specialityRepository.delete(object);
     }
 

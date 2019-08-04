@@ -12,8 +12,8 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "specialities")
-public class Speciality extends BaseEntity {
+@Table(name = "specialties")
+public class Specialty extends BaseEntity {
 
     @Column(name = "description")
     private String description;
