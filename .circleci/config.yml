@@ -28,3 +28,7 @@ jobs: # a collection of steps
           key: spring5-pet-clinic-{{ checksum "pom.xml" }}
 
       - run: mvn clean verify
+
+      - run:
+          name: Send to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)

@@ -46,16 +46,16 @@ public class VisitController {
 
     // Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
     @GetMapping("/owners/*/pets/{petId}/visits/new")
-    public String initNewVisitForm(Pet pet, Model model) {
+    public String initCreateForm(Pet pet, Model model) {
         model.addAttribute("pet", pet);
-        model.addAttribute(Visit.builder().build());
+        model.addAttribute("visit", Visit.builder().build());
 
         return "visit/createOrUpdateVisitForm";
     }
 
     // Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
     @PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
-    public String processNewVisitForm(@PathVariable Long ownerId, Pet pet, @Valid Visit visit, BindingResult result) {
+    public String processCreateForm(@PathVariable Long ownerId, Pet pet, @Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
             return "visit/createOrUpdateVisitForm";
         } else {
